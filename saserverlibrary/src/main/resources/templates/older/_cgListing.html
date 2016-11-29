@@ -1,0 +1,43 @@
+
+	#if ( !$cg.alarmTraversalConsistent || !$cg.parentTraversalConsistent )
+		#set ( $inconsistent = true )
+	#else
+		#set ( $inconsistent = false )
+	#end
+
+	<a id="cgAnchor-$cgName"><div class="cg-section">#if ( $inconsistent ) <span class="cg-alarmRecordCritical"><i class="icon-warning-sign"></i></span>  #end $cg.name</div></a>
+	<div class="cg-detail">
+		<div class="cg-occursOn">
+			<div class="cg-label cg-inlineLabel">Anchor:</div>
+			#if ( !$cg.alarmTraversalConsistent )
+				<div class="cg-occursOnDetail cg-alarmRecordCritical">The traversals for this alarm set are not consistent!</div>
+			#else
+				<div class="cg-occursOnDetail">$cg.anchorTopologyType.simpleName</div>
+			#end
+		</div>
+
+		<div class="cg-trigger">
+			<div class="cg-label cg-inlineLabel">Trigger:</div>
+			<div class="cg-triggerdetail" title="$cg.trigger.class.simpleName">$cg.trigger.describe()</div>
+		</div>
+
+		<div class="cg-label">Alarms:</div>
+		#foreach ( $ar in $cg.alarmRecords )
+		<div class="cg-alarmRecord">
+			<div class="cg-alarmRecordLabel">$ar.label</div>
+			<div class="cg-alarmRecordSpec">$ar.alarmSpecification</div>
+			<div class="cg-alarmRecordTraversal" title="$ar.traverser.class.simpleName">@ $ar.traverser.describeReverse()</div>
+		</div>
+		#end
+
+		#if ( $cg.parentRecords.size() > 0 )
+			#set ( $bps = $cg.badParents )
+			<div class="cg-label">Secondary To:</div>
+			#foreach ( $parent in $cg.parentRecords )
+				<div class="cg-parentRecord">
+					<div class="cg-parentRecordName"><a href="#cgAnchor-$parent.parent.name">$parent.parent.name</a></div>
+					<div class="cg-parentRecordTraversal #if ( $bps.contains( $parent ) ) cg-alarmRecordCritical #end" title="$parent.traverser.class.simpleName">@ $parent.traverser.describeForward()</div>
+				</div>
+			#end
+		#end
+	</div>

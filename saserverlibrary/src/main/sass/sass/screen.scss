@@ -1,0 +1,581 @@
+@charset "utf-8";
+
+@import "compass/reset";
+@import "commonSettings";
+
+@import "header";
+
+body
+{
+	-webkit-font-smoothing:antialiased;
+	font-family: Helvetica, Arial, sans;
+	font-size:1em;
+	line-height:1.5em;
+	letter-spacing:1px;
+	text-rendering:optimizeLegibility;
+
+	background-color: $footerColor;
+	color: $bodyTextColor;
+}
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+
+#bottom-wrap
+{
+	width: 100%;
+	background: $footerColor;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#bottom
+{
+	width: $totalWidth;
+	margin: 0 auto;
+	position: relative;
+
+	font-family: 'Open Sans';
+	font-size: 0.8em;
+	line-height: 1.5em;
+
+	color: $footerTextColor;
+}
+
+.footer-block
+{
+	display: inline-block;
+	vertical-align:top;
+}
+
+.footer-text-block
+{
+	margin-left: 4em;
+}
+
+.footer-text
+{
+	margin: 0;
+	padding: 0;
+
+	a
+	{
+		text-decoration: none;
+		color: $footerTextColor;
+
+		&:hover
+		{
+			text-decoration: underline;
+		}
+	}
+}
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+
+#body-wrap
+{
+	width: 100%;	
+	background-color: $bodyColor;
+}
+
+#body
+{
+	width: $totalWidth;
+	min-height: 500px;
+	margin:0 auto;
+	padding-top: 1em;
+}
+
+.dev-note
+{
+	font-size: 60%;
+	border: 1px dashed gray;
+	background: #eee;
+	color: #000;
+	padding-left: 1em;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+}
+
+@import "forms";
+
+.title
+{
+	font-size: 1.5em;
+}
+
+.sectionHeader
+{
+	padding-top: 1em;
+
+	font-size: 1.25em;
+}
+
+.section
+{
+	padding-top: 1em;
+
+	a
+	{
+		color: $linkColor;
+		text-decoration: none;
+		
+		&:hover
+		{
+			color: #666;
+			text-decoration: none;
+		}
+	}
+}
+
+.sectionFooter
+{
+	font-family: Arial;
+	font-size: 0.7em;
+}
+
+.section-control
+{
+	margin: 0;
+
+	&:hover
+	{
+		text-decoration: underline;
+	}
+}
+
+.section-controlpad
+{
+	font-family: Courier;
+	font-size: 0.8em;
+
+	a
+	{
+		color: $linkColor;
+		text-decoration: none;
+		&:hover
+		{
+			color: #666;
+			text-decoration: none;
+		}
+	}
+}
+
+.control-pad
+{
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+
+	ul
+	{
+		list-style: none;
+
+		li
+		{
+			display: inline;
+			margin: 0 0.25em 0 0;
+		}
+	}
+
+	a
+	{
+		color: #333;
+		text-decoration: none;
+		
+		&:hover
+		{
+			color: #666;
+			text-decoration: none;
+		}
+	}
+}
+
+.hideable
+{
+	display: none;
+}
+
+$hpMenuWidth: 125px;
+$hpPageWidth: $totalWidth - $hpMenuWidth - 30px;
+$hpSettingsPadWidth: 225px;
+$hpSettingsBlockWidth: $hpPageWidth - $hpSettingsPadWidth - 15px;
+$hpSettingsBlockEntryPadWidth: 30px;
+$hpSettingsBlockEntryWidth: $hpSettingsBlockWidth - $hpSettingsBlockEntryPadWidth - 40px;
+
+
+#hpSelectorPad
+{
+	display: inline-block;
+
+	width: $hpMenuWidth - 2px;
+	padding-right: 2px;
+
+	vertical-align: top;
+	overflow: auto;
+}
+
+.hpPage
+{
+	display: inline-block;
+	width: $hpPageWidth;
+	vertical-align: top;
+}
+
+.settings-list
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	font-family: Courier, Arial;
+	font-size: 0.8em;
+}
+
+.settings-group
+{
+	border-bottom: 1px dashed gray;
+
+	font-family: Courier, Arial;	/* OmnesATT */
+	font-size: 0.7em;
+}
+
+.settings-key
+{
+	display: inline-block;
+	width: $hpSettingsPadWidth;
+	overflow: auto;
+	vertical-align: top;
+
+	font-weight: bold;
+}
+
+.settings-block
+{
+	display: inline-block;
+	width: $hpSettingsBlockWidth;
+	overflow: auto;
+	vertical-align: top;
+}
+
+.settings-key-group
+{
+	display: inline-block;
+	vertical-align: top;
+	width: $hpSettingsBlockEntryWidth;
+}
+
+.settings-key-group-control
+{
+	display: inline-block;
+	vertical-align: top;
+	width: $hpSettingsBlockEntryPadWidth;
+}
+
+.settings-text
+{
+}
+
+.settings-filter
+{
+}
+
+.settings-value
+{
+}
+
+.section-intro
+{
+	font-family: Arial;	/* OmnesATT */
+	font-size: 0.8em;
+	line-height: 1.25em;
+	padding-bottom: 0.5em;
+}
+
+.phaseLinkMenu
+{
+	margin-top: 1.0em;
+
+	font-family: Arial;
+	font-size: 0.8em;
+}
+
+.processing-list
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	font-family: Courier, Arial;
+}
+
+.processing-entry
+{
+	display: inline-block;
+
+	overflow: auto;
+	vertical-align: top;
+
+	padding-top: 1.5em;
+	padding-bottom: 0.5em;
+
+	font-family: Courier, Arial;
+	font-size: 0.75em;
+}
+
+.processing-filterpart
+{
+}
+
+.processing-processingpart
+{
+}
+
+.processing-processor
+{
+	margin-left: 3.0em;
+}
+
+.processing-processor-even
+{
+	background-color: #fff;
+}
+
+.processing-processor-odd
+{
+	background-color: #eee;
+}
+
+.processing-entry-controlPadContainer
+{
+	height: 2em;
+}
+
+.table
+{
+	margin-top: 1.5em;
+	font-size: 0.8em;
+}
+
+.tableRecord
+{
+}
+
+.tableLabel
+{
+	color: #888;
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+	
+	a
+	{
+		text-decoration: none;
+		color: $linkColor;
+
+		&:hover
+		{
+			text-decoration: underline;
+		}
+	}
+}
+
+.tableValue
+{
+	color: #000;
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+}
+
+.corr-list
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	font-family: Arial;	/* OmnesATT */
+}
+
+.cg-label
+{
+	color: $labelGray;
+}
+
+.cg-inlineLabel
+{
+	display: inline-block;
+}
+
+.cg-section
+{
+	padding-top: 2.0em;
+
+	font-family: Arial;	/* OmnesATT */
+	font-size: 1.75em;
+	font-weight: bold;
+
+	a
+	{
+		text-decoration: none;
+		color: $bodyTextColor;
+
+		&:hover
+		{
+			text-decoration: underline;
+			color: $bodyTextColor;
+		}
+	}
+}
+
+.cg-detail
+{
+	font-size: 0.9em;
+
+	a
+	{
+		text-decoration: none;
+		color: $linkColor;
+
+		&:hover
+		{
+			text-decoration: underline;
+		}
+	}
+}
+
+.cg-occursOn
+{
+}
+
+.cg-occursOnDetail
+{
+	display: inline-block;
+}
+
+.cg-trigger
+{
+}
+
+.cg-triggerdetail
+{
+	display: inline-block;
+}
+
+.cg-alarmRecord
+{
+}
+
+.cg-alarmRecordLabel
+{
+	display: inline-block;
+	padding-left: 1.5em;
+}
+
+.cg-alarmRecordSpec
+{
+	display: inline-block;
+}
+
+.cg-alarmRecordTraversal
+{
+	display: inline-block;
+}
+
+.cg-alarmRecordCritical
+{
+	color: #ff0000;
+}
+
+.cg-alarmRecordWarning
+{
+	color: #fed85d;
+}
+
+.cg-parentRecordName
+{
+	display: inline-block;
+	padding-left: 1.5em;
+}
+
+.cg-parentRecordTraversal
+{
+	display: inline-block;
+}
+
+.activeAlarm
+{
+}
+
+.consAlarmField
+{
+}
+
+.consAlarmValue
+{
+	padding-left: 2em;
+}
+
+.consConflictedValue
+{
+	color: #f00;
+}
+
+.consValueKey
+{
+	display: inline-block;
+	min-width: 5em;
+}
+
+.consValueValue
+{
+	display: inline-block;
+	min-width: 10em;
+}
+
+.consOddRow
+{
+}
+
+.consEvenRow
+{
+	background-color: #cec;
+}
+
+.consHeaderCell 
+{
+	padding-left: 0.25em;
+	padding-right: 1em;
+	font-weight: bold;
+}
+
+.consValueCell 
+{
+	padding-left: 0.25em;
+	padding-right: 1em;
+	font-size: 0.9em;
+}
+
+.smaller
+{
+	font-size: 0.8em;
+}
+
+
+#editor
+{
+	visibility: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width:100%;
+	height:100%;
+	text-align:center;
+	z-index: 1000;
+	background-image:url(../images/dimmer.png);
+}
+
+#editor .editor-pane
+{
+	width:300px;
+	margin: 100px auto;
+	background-color: #fff;
+	border:1px solid #000;
+	padding:15px;
+	text-align:center;
+}

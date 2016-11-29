@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Active Correlation</div>
+
+	#if ( $activeCg )
+		<div><a href="$servletRoot/corr/cg/$activeCg.correlationGroup.name">$activeCg.correlationGroup.name</a> at <a href="$servletRoot/corr/topo/$activeCg.anchorTopology">$activeCg.anchorTopology</a></div>
+
+		<div>Primary: <a href="$servletRoot/corr/a/$activeCg.primary.identifier">$activeCg.primary.eventId</a> on <a href="$servletRoot/corr/topo/$activeCg.primary.topoKey">$activeCg.primary.topoKey</a></div>
+
+		<div>Secondaries:</div>
+		#foreach ( $secondary in $activeCg.secondaries )
+			<div><a href="$servletRoot/corr/a/$secondary.identifier">$secondary.eventId</a> on <a href="$servletRoot/corr/topo/$secondary.topoKey">$secondary.topoKey</a></div>
+		#end
+	#else
+		<div>The correlation was not found. It may have cleared or been subsumed by another correlation.</div>
+	#end
+
+</div>
+
+#parse ( "footer.html" )

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Tests</div>
+<!--
+	<div class="control-pad">
+		<ul>
+			<li><a href="$servletRoot/settings/reload" title="Reload Settings"><i class="icon-refresh"></i></a></li>
+			<li><a href="$servletRoot/settings/export" title="Export Settings"><i class="icon-cloud-download"></i></a></li>
+		</ul>
+	</div>
+
+	<script>
+		function choosePanel(id)
+		{
+			$('.hideable').hide();
+			$(id).show(125);
+		}
+	</script>
+	<div class="section-controlpad">
+		<span class="section-control" onclick="choosePanel('#settings-page');">General Settings</span>
+		<span class="section-control" onclick="choosePanel('#processing-page');">Processing Configuration</span>
+		<span class="section-control" onclick="choosePanel('#corr-page');">Correlation Configuration</span>
+	</div>
+-->
+
+	<div>
+		<form method="post" action="$servletRoot/traverse">
+			<label>Topology Instance</label><input name="topo" type="text" placeholder="topoKey"><br/>
+			<label>Traverser</label><select name="traverser">
+			#foreach ( $t in $traversals )
+			<option>$t</option>
+			#end
+			</select><br/>
+			<label>Forward</label><input type="checkbox" name="direction">
+			<input type="submit" value="Submit"><br/>
+		</form>
+	</div>
+
+	<div>&nbsp;</div>
+	<div>
+		<div>Results</div>
+		#foreach ( $r in $targets )
+		<div><form method="post" action="$servletRoot/traverse">$r <input type="hidden" name="topo" value="$r"><select>#foreach ( $t in $traversals ) <option>$t</option> #end</select><input type="submit" value="go"> </form></div>
+		#end
+	</div>
+
+	</div>
+
+#parse ( "footer.html" )
+
+<script>
+	choosePanel('#settings-page');
+</script>

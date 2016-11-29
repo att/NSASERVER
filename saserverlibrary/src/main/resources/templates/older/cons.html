@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Consolidator</div>
+	<div><a href="$servletRoot/cons/reset">Reset</a> <a href="$servletRoot/cons/rebuild">Rebuild</a></div>
+
+	<div>
+		#if ( $alarm )
+			<div class="sectionHeader">$alarm.identifier <span class="smaller"><a href="$servletRoot/cons/touch/$alarm.identifier"><i class="icon-hand-up"></i></a></span></div>
+			#if ( $cons.alarmDb.getImpactsFor($alarm.identifier).size()>0 )
+			<div class="section">
+				<div>Alarms to re-consolidate if this alarm changes:</div> 
+				#foreach ( $impact in $cons.alarmDb.getImpactsFor($alarm.identifier) )
+					<div><a href="$servletRoot/cons/alarm/$impact">$impact</a></div>
+				#end
+			</div>
+			#end
+			<div class="section">
+				<table>
+					<tr>
+						<td class="consHeaderCell">field</td>
+						<td class="consHeaderCell">source</td>
+						<td class="consHeaderCell">value</td>
+						<td class="consHeaderCell">consolidated</td>
+					</tr>
+				#foreach ( $field in $alarm.allFields )
+					#set ( $doneOne = false )
+					#set ( $oddRow = true )
+					#foreach ( $entry in $alarm.getAllOpinionsOn($field).entrySet() )
+						<tr>
+							<td class="consValueCell #if($alarm.hasConflictsOn($field)) consConflictedValue #end">#if(!$doneOne)$field#else&nbsp;#end</td>
+							<td class="consValueCell #if($oddRow) consOddRow #else consEvenRow #end">$entry.getKey()</td>
+							<td class="consValueCell #if($oddRow) consOddRow #else consEvenRow #end">$!entry.getValue()</td>
+							<td class="consValueCell">#if(!$doneOne)$!consAlarm.getValue($field)#end</td>
+						</tr>
+						#set ( $doneOne = true )
+						#if ( $oddRow ) #set($oddRow=false) #else #set($oddRow=true) #end
+					#end
+				#end
+				</table>
+			</div>
+		#else
+			<div class="sectionHeader">Alarm DB</div>
+			<div class="section">
+				<div class="corrTable">
+					#foreach ( $c in $cons.alarmDb.allAlarms )
+						<div class="activeCorrelation">
+							#if ( $c.hasConflicts() )<i class="icon-ambulance"></i> #end
+							<a href="$servletRoot/cons/alarm/$c.identifier">$c.identifier</a>
+						</div>
+					#end
+				</div>
+			</div>
+		#end
+	</div>
+
+</div>
+
+#parse ( "footer.html" )

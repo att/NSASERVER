@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Alarm Injection</div>
+	<div>
+	You can inject alarms into the correlation system. Alarms will be marked as a test
+	alarms, so they will not be published by the UCA value pack.
+	</div>
+	<div>
+		<form id="injectForm" method="POST" action="$servletRoot/corr/injector">
+			<div class="injectError"><label class="injectLabel" for="submitButton">&nbsp;</label>$!alarmDataInvalid</div>
+			<div><label class="injectLabel" for="source">Source</label><input id="source" name="source" value="TEST" disabled/></div>
+			<div><label class="injectLabel" for="alarmData">Alarm Data</label><textarea id="alarmData" name="alarmData" wrap="off" >$alarmDataInit</textarea></div>
+			<div><label class="injectLabel" for="submitButton">&nbsp;</label><input id="submitButton" type="submit" value="Post"></div>
+		</form>
+	</div>
+
+</div>
+
+#parse ( "footer.html" )

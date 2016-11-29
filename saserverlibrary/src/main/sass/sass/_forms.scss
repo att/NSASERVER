@@ -1,0 +1,35 @@
+
+#injectForm
+{
+	margin-top: 2em;
+	width: 100%;
+	position: relative;
+}
+
+.injectLabel
+{
+	display: inline-block;
+	width: 6em;
+
+	text-align: right;
+	padding-right: 1em;
+
+	vertical-align: top;
+}
+
+#alarmData
+{
+	wrap: off;
+
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+
+	padding: 0.25em;
+}
+
+.injectError
+{
+	color: #ff0000;
+}
+

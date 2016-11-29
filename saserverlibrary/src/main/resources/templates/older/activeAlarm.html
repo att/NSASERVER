@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	#if ( $alarm )
+	
+		<div class="title">Alarm: $alarm.identifier</div>
+
+		#if ( $correlation )
+			<div>Correlated in <a href="$servletRoot/corr/ac/$correlation.id">$correlation.id</a></div>
+		#end
+		<div><a href="$servletRoot/corr/clear/$alarm.identifier">Clear this alarm</a></div>
+
+		<table class="table">
+		#foreach ( $field in $fields )
+			<tr class="tableRecord"><td class="tableLabel">$field</td><td class="tableValue">$alarm.getValueViaSchema($field,"")</td></tr>
+		#end
+		</table>
+	#else
+		<div class="title">Alarm</div>
+		<div>The alarm was not found. (Did it clear?).</div>
+	#end
+
+</div>
+
+#parse ( "footer.html" )

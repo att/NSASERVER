@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>AT&ampT 2020 Systems Control</title>
+
+		<!--  link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" -->
+		<link rel="stylesheet" href="$warRoot/font-awesome/css/font-awesome.min.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+		<!-- start addl scripts -->
+		#foreach ( $script in $headerScripts )
+		<script src="$script"></script>
+		#end
+		<!-- end addl scripts -->
+
+      	#foreach ( $plugin in $plugins )
+      		<!-- css for $plugin.uiName -->
+      		#foreach ( $cssName in $plugin.getUiCssList() )
+			<link rel="stylesheet" href="$warRoot/css/$cssName">
+      		#end
+		#end
+
+	</head>
+	<body>
+
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="$servletRoot/"><img height="24px" src="$warRoot/images/att_vt_1cp_grd_rev.gif"></a>
+	    </div>
+	
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	      	
+	      	#foreach ( $plugin in $plugins )
+				<li #if ( $plugin.uiName == $tab ) class="active" #end><a href="$servletRoot$plugin.uiLink">$plugin.uiName</a></li>
+			#end
+
+	      </ul>
+
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	#if($preContainerParse)
+	#parse($preContainerParse)
+	#end
+
+	<div class="container" id="body-wrap">
+
+	#foreach ( $msg in $!messages )
+		<div class="alert alert-dismissible #if($msg.level=='INFO')alert-info #else alert-danger #end" role="alert">
+			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			$msg.message
+		</div>
+	#end
+	

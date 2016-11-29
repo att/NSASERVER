@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	#if ( $alarm )
+		#* display a single alarm *#
+		<div class="title">Alarm Inspection: $alarm.identifier</div>
+		<table class="table">
+		#foreach ( $field in $fields )
+			<tr class="tableRecord"><td class="tableLabel">$field</td><td class="tableValue">$alarm.getValueViaSchema($field,"")</td></tr>
+		#end
+		</table>
+	#elseif ( $alarms )
+		#* display all alarms *#
+		<div class="title">Alarms in UCA's Working Memory</div>
+		<div class="section-intro">Note that LTE does not keep alarms in UCA's Working Memory.</div>
+		<table class="table">
+		#foreach ( $alarm in $alarms )
+			<tr class="tableRecord"><td class="tableLabel"><a href="$servletRoot/wm/$alarm.identifier">$alarm.identifier</a></td><td class="tableValue">$alarm.getValueViaSchema("AlarmID","???") on $alarm.getValueViaSchema("ManagedObjectInstance","(no topo)")</td></tr>
+		#end
+		</table>
+	#else
+		<div class="title">Alarms Inspection</div>
+		<div>Alarm(s) not found</div>
+	#end
+
+	<div><a href="$servletRoot/corr/injector">Inject an Alarm</a></div>
+
+</div>
+
+#parse ( "footer.html" )

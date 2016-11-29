@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Configurable Alarm Correlator</div>
+
+	<div>
+		<div class="control-pad">
+			<ul>
+			#if($cce.engineTrace)
+				<li><a href="$servletRoot/corr/tracing?tracing=off" title="Stop CCE Engine Trace">CCE Tracer <i class="icon-pause"></i></a></li>
+			#else
+				<li><a href="$servletRoot/corr/tracing?tracing=on" title="Start CCE Engine Trace">CCE Tracer <i class="icon-play"></i></a></li>
+			#end
+			</ul>
+		</div>
+	
+		<div class="sectionHeader">Active Correlations</div>
+		<div class="section">
+			<div class="corrTable">
+				#foreach ( $c in $cce.alarmState.allCorrelations )
+					<div class="activeCorrelation"><a href="$servletRoot/corr/ac/$c.id">$c.correlationGroup.name at $c.anchorTopology</a></div>
+				#end
+			</div>
+		</div>
+
+		<div class="sectionHeader">Active Alarms</div>
+		<div class="section">
+			<div>Active Alarms: $!cce.alarmState.size() <a href="$servletRoot/corr/reset" title="Forget ALL Alarms"><i class="icon-eraser"></i></a></div>
+			#foreach ( $a in $cce.alarmState.allAlarms )
+				<div class="activeAlarm">
+					<a href="$servletRoot/corr/a/$a.identifier">$a</a>
+					<a href="$servletRoot/corr/clear/$a.identifier" title="Clear"><i class="icon-eraser"></i></a>
+				</div>
+			#end
+		</div>
+
+		<div class="sectionHeader">Correlator Metrics</div>
+		<div class="section">
+			<div>Total Events: $!cce.metrics.totalEvents ($!cce.metrics.alarmRate)</div>
+			<div>Onsets: $!cce.metrics.totalOnsets</div>
+			<div>Clears: $!cce.metrics.totalClears</div>
+			<div>Correlations: $!cce.metrics.totalCorrelations</div>
+		</div>
+	</div>
+
+</div>
+
+#parse ( "footer.html" )

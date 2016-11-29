@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+#set( $tab = "metrics" )
+#parse ( "header.html" )
+
+<!-- FIXME: use an ajax call to load the metrics every second -->
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="section">
+		#foreach ( $entry in $metricEntries )
+			<div>
+			<span>
+			#if ( $entry.hasValue() )
+				<a href="$servletRoot/api/metrics/$entry.name">$entry.localName</a>: $entry.value.summarize()
+			#end
+			</span>
+			</div>
+		#end
+	</div>
+	<div class="sectionFooter">
+		<a href="$servletRoot/metrics/clear">reset metrics</a>
+	</div>
+</div>
+
+#parse ( "footer.html" )

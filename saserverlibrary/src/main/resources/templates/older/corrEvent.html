@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Event $event.identifier</div>
+
+	<div class="section">
+		<div>$event.eventId</div>
+		<div>$event.topoKey</div>
+
+		#if ( $activeCg )
+			#if ( $activeCg.primary == $event )
+				<div>Primary in <a href="$servletRoot/corr/ac/$activeCg.id">$activeCg.cgSpec.name at $activeCg.anchorTopology</a></div>
+				<div>
+					<div>Secondaries</div>
+					#foreach ( $secondary in $activeCg.secondaries )
+						<div><a href="$servletRoot/corr/event/$secondary.identifier">$secondary.eventId at $secondary.topoKey</a></div>
+					#end
+				</div>
+			#else
+				<div>Secondary to <a href="$servletRoot/corr/event/$activeCg.primary.identifier">$activeCg.primary.eventId on $activeCg.primary.topoKey</a></div>
+				<div>In correlation <a href="$servletRoot/corr/ac/$activeCg.id">$activeCg.cgSpec.name at $activeCg.anchorTopology</a></div>
+			#end
+		#end
+	</div>
+
+</div>
+
+#parse ( "footer.html" )

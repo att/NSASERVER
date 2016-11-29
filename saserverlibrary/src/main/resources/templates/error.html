@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div>
+	#if ( $msg )
+		$msg
+	#else
+		An error occurred; no further information is available.
+	#end
+</div>
+
+
+#parse ( "footer.html" )

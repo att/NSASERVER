@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Alarms on $topoKey</div>
+
+	<div class="section">
+		#foreach ( $alarm in $alarms )
+		<div><a href="$servletRoot/corr/a/$alarm.identifier">$alarm.eventId</a></div>
+		#end
+	</div>
+
+</div>
+
+#parse ( "footer.html" )

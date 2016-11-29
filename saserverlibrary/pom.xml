@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.att.nsa</groupId>
+	<artifactId>nsaServerLibrary</artifactId>
+	<version>1.0.10</version>
+	<packaging>jar</packaging>
+
+	<name>Network Service Assurance Server Library</name>
+	<description>Library of code used in various API servers</description>
+	<url>http://attgfp.net</url>
+
+	<properties>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<!-- other plugin versions -->
+		<version.compiler.plugin>2.3.1</version.compiler.plugin>
+		<version.war.plugin>2.1.1</version.war.plugin>
+	</properties>
+
+	<scm>
+		<connection>scm:git:ssh://git@codecloud.web.att.com:7999/st_2020int/saserverlibrary.git</connection>
+		<developerConnection>scm:git:ssh://git@codecloud.web.att.com:7999/st_2020int/saserverlibrary.git</developerConnection>
+		<url>https://codecloud.web.att.com/scm/st_2020int/saserverlibrary.git</url>
+	</scm>
+
+	<dependencies>
+		<dependency>
+    		<groupId>javax.servlet.jsp</groupId>
+    		<artifactId>jsp-api</artifactId>
+    		<version>2.2</version>
+    		<scope>provided</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-api</artifactId>
+    		<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.att.nsa</groupId>
+			<artifactId>saToolkit</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<!-- Cambria Client (for sending health messages) -->
+		<dependency>
+			<groupId>com.att.nsa</groupId>
+			<artifactId>cambriaClient</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<!-- Flatiron client (for config db storage, optionally) -->
+		<!-- <dependency>
+			<groupId>com.att.nsa</groupId>
+			<artifactId>flatironClient</artifactId>
+			<version>2.1.0</version>
+			<optional>true</optional>
+		</dependency> -->
+
+		<!-- JSON libraries -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20131018</version>
+		</dependency>
+
+		<!-- UI systems may use velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<!-- jline -->
+		<dependency>
+			<groupId>jline</groupId>
+			<artifactId>jline</artifactId>
+			<version>2.11</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- embedded tomcat -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>8.0.36</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-util</artifactId>
+			<version>8.0.36</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>8.0.36</version>
+		</dependency>
+
+		<!-- cassandra client -->
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-core</artifactId>
+			<version>2.1.0</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- explicitly list zookeeper here to mark exclusions of jars that aren't available -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.3.2</version>
+			<optional>true</optional>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+
+				<!-- don't dictate the logging system to our application -->
+				<exclusion> 
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion> 
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.3</version>
+			<optional>true</optional>
+			<exclusions>
+				<exclusion> 
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion> 
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	
+	<profiles>
+	    <!-- Add plugins here that should only be executed on the Jenkins server -->
+	    <profile>
+		<id>jenkins</id>
+		<activation>
+		    <property>
+			<name>env.BUILD_NUMBER</name>
+		    </property>
+		</activation>
+		<build>
+		    <plugins>
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>cobertura-maven-plugin</artifactId>
+			</plugin>
+		    </plugins>
+		</build>
+	    </profile>
+	</profiles>
+</project>

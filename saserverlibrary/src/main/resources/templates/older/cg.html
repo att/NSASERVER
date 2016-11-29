@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+#parse ( "header.html" )
+
+<div id="gfpui-container">
+
+	#if ( $errorMsg )
+		<div>$errorMsg</div>
+	#end
+
+	<div class="title">Correlation Group Detail</div>
+
+	#parse("_cgListing.html")
+
+</div>
+
+#parse ( "footer.html" )

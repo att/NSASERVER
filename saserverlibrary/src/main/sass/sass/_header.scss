@@ -1,0 +1,94 @@
+
+#topbar-wrap
+{
+	width: 100%;
+	background: $topBarColor;
+}
+
+#topbar
+{
+	width: $totalWidth;
+	margin: 0 auto;
+
+	padding-top: 0.75em;
+	padding-bottom: 0.5em;
+
+	position: relative;	/* for absolute positioning internally */
+
+	font-family: Courier, Arial;	/* OmnesATT */
+	font-size: 1.0em;
+	color: $topBarTextColor;
+
+	a.selectedTab
+	{
+		text-decoration: none;
+		color: $topBarActiveTextColor;
+		&:hover
+		{
+			color: $topBarLinkHiliteColor;
+			text-decoration: none;
+		}
+	}
+
+	a.unselectedTab
+	{
+		text-decoration: none;
+		color: $topBarTextColor;
+		&:hover
+		{
+			color: $topBarLinkHiliteColor;
+			text-decoration: none;
+		}
+	}
+
+	ul
+	{
+		list-style: none;
+
+		li
+		{
+			display: inline;
+			margin: 0 0.5em 0 0;
+		}
+	}
+}
+
+#searchBarWrap
+{
+	border: 2px #aaa solid;
+	border-radius: 15px;
+	background-color: lighten(#444,10%);
+
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+
+	input
+	{
+		border: none;
+
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+
+		color: #fff;
+		background-color: lighten(#444,10%);
+
+		&:focus
+		{
+			outline: none;
+		}
+	}
+}
+
+.dialog-info
+{
+	display: none;
+
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	color: #444;
+	background-color: $linkHiliteColor;
+
+	text-align: center;
+}
+
