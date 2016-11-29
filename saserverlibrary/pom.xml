@@ -23,11 +23,7 @@
 		<version.war.plugin>2.1.1</version.war.plugin>
 	</properties>
 
-	<scm>
-		<connection>scm:git:ssh://git@codecloud.web.att.com:7999/st_2020int/saserverlibrary.git</connection>
-		<developerConnection>scm:git:ssh://git@codecloud.web.att.com:7999/st_2020int/saserverlibrary.git</developerConnection>
-		<url>https://codecloud.web.att.com/scm/st_2020int/saserverlibrary.git</url>
-	</scm>
+
 
 	<dependencies>
 		<dependency>
@@ -191,8 +187,29 @@
 			    <groupId>org.codehaus.mojo</groupId>
 			    <artifactId>cobertura-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrhdme</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
 		    </plugins>
 		</build>
 	    </profile>
 	</profiles>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrhdme</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrhdme</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 </project>
