@@ -23,6 +23,21 @@
 		<version.war.plugin>2.1.1</version.war.plugin>
 	</properties>
 
+<licenses>
+	  <license>
+	    <name>BSD License</name>
+	    <url>https://github.com/att/NSASERVER/blob/master/License.txt</url>
+	  </license>
+	</licenses>
+
+	<developers>
+	   <developer>
+	     <name>Peter</name>
+	     <email></email>
+	     <organization>ATT</organization>
+	     <organizationUrl>www.att.com</organizationUrl>
+	   </developer>
+   </developers>
 
 
 	<dependencies>
@@ -172,6 +187,48 @@
 		</dependency>
 	</dependencies>
 	
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			 <configuration>
+				<failOnError>false</failOnError>
+		    </configuration>
+			<executions>
+				<execution>
+					<id>attach-javadocs</id>
+					<goals>
+						<goal>jar</goal>
+					</goals>
+				</execution>
+			</executions>
+			</plugin> 
+			 <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-source-plugin</artifactId>
+		      <version>2.2.1</version>
+		      <executions>
+			<execution>
+			  <id>attach-sources</id>
+			  <goals>
+			    <goal>jar-no-fork</goal>
+			  </goals>
+			</execution>
+		      </executions>
+		    </plugin>
+		</plugins>
+	</build>
+	
+
 	<profiles>
 	    <!-- Add plugins here that should only be executed on the Jenkins server -->
 	    <profile>
@@ -203,13 +260,18 @@
 	    </profile>
 	</profiles>
 	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrhdme</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
 		<repository>
 			<id>ossrhdme</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
+		<snapshotRepository>
+			<id>ossrhdme</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 	</distributionManagement>
+	<scm>
+		<connection>https://github.com/att/NSASERVER.git</connection>
+		<developerConnection>${project.scm.connection}</developerConnection>
+		<url>http://github.com/att/NSASERVER/tree/master</url>
+	</scm>
 </project>
